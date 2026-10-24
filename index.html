@@ -3,254 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevForgeHub - Advanced Global Fighter Jets & Technology Matrix</title>
+    <title>Global Defense & Aerospace Intelligence Network</title>
     <style>
         :root {
-            --primary: #0ea5e9;
-            --secondary: #2563eb;
-            --bg: #030712;
-            --card-bg: #111827;
-            --text: #f3f4f6;
-            --accent: #10b981;
-            --border: #1f2937;
+            --bbc-red: #bb1919;
+            --bbc-dark: #141414;
+            --bbc-gray: #f6f6f6;
+            --border-color: #3f3f3f;
+            --text-main: #222;
         }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: #fff;
+            color: var(--text-main);
             min-height: 100vh;
-            padding: 20px;
+        }
+        /* BBC Style Header */
+        .top-bar {
+            background-color: var(--bbc-dark);
+            color: white;
+            padding: 12px 20px;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
+            border-bottom: 4px solid var(--bbc-red);
         }
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 20px;
-            width: 100%;
-            max-width: 1200px;
+        .logo-area {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: #fff;
+            color: #000;
+            padding: 2px 10px;
+            display: inline-block;
         }
-        header h1 {
-            font-size: 2.8rem;
-            background: linear-gradient(to right, #38bdf8, #3b82f6, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+        .live-status {
+            color: #ff4d4d;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        header p {
-            color: #9ca3af;
-            font-size: 1.05rem;
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        .sub-nav {
+            background-color: #222;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
         }
         .container {
-            width: 100%;
             max-width: 1200px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-bottom: 35px;
+            margin: 20px auto;
+            padding: 0 15px;
         }
-        .jet-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
+        .section-title {
+            font-size: 1.5rem;
+            border-bottom: 3px solid var(--bbc-red);
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #111;
+        }
+        /* Grid Layout like News Channel */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .news-card {
+            background: #fff;
+            border: 1px solid #e2e2e2;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
         }
-        .jet-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(14, 165, 233, 0.2);
+        .news-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #999;
         }
-        .jet-img-box {
+        .news-img {
             width: 100%;
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-        .jet-img-box img {
-            width: 100%;
-            height: 100%;
+            height: 180px;
             object-fit: cover;
-            transition: 0.5s;
         }
-        .jet-card:hover .jet-img-box img {
-            transform: scale(1.05);
+        .news-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .flag-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.75);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .news-content h3 {
+            font-size: 1.15rem;
+            color: #111;
+            margin-bottom: 8px;
+            line-height: 1.3;
         }
-        .jet-content {
-            padding: 20px;
-        }
-        .jet-content h3 {
-            color: #f9fafb;
-            margin-bottom: 6px;
-            font-size: 1.3rem;
-        }
-        .gen {
-            display: inline-block;
-            background: #1e293b;
-            padding: 3px 10px;
-            border-radius: 6px;
+        .meta-tag {
             font-size: 0.8rem;
-            margin-bottom: 12px;
-            color: var(--accent);
+            color: var(--bbc-red);
             font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 6px;
         }
-        .jet-content p {
-            color: #9ca3af;
-            font-size: 0.92rem;
-            line-height: 1.5;
+        .news-content p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.4;
         }
-        .details-section {
-            width: 100%;
-            max-width: 1200px;
-            background: var(--card-bg);
-            border: 2px solid var(--primary);
-            border-radius: 16px;
+        /* Detailed View Modal / Box */
+        .article-view {
+            background: #f9f9f9;
+            border: 2px solid var(--bbc-dark);
             padding: 30px;
+            margin-bottom: 40px;
             display: none;
-            margin-bottom: 35px;
-            box-shadow: 0 0 30px rgba(14, 165, 233, 0.15);
         }
-        .details-grid {
+        .article-view h2 {
+            color: var(--bbc-red);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .article-meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .article-body {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 25px;
         }
         @media (max-width: 768px) {
-            .details-grid { grid-template-columns: 1fr; }
+            .article-body { grid-template-columns: 1fr; }
         }
-        .details-info h2 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-        }
-        .details-info p {
-            color: #d1d5db;
+        .article-text p {
+            font-size: 1.05rem;
             line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .article-stats {
+            background: #fff;
+            border-left: 4px solid var(--bbc-red);
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .article-stats h4 {
             margin-bottom: 10px;
-            font-size: 1rem;
+            color: #111;
         }
-        .spec-tag {
-            background: #1e293b;
-            padding: 8px 12px;
-            border-radius: 8px;
-            margin-top: 8px;
-            border-left: 4px solid var(--accent);
+        .article-stats ul {
+            list-style: none;
+        }
+        .article-stats ul li {
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
             font-size: 0.9rem;
         }
-        .details-img img {
+        .article-img {
             width: 100%;
-            height: 300px;
+            max-height: 350px;
             object-fit: cover;
-            border-radius: 12px;
-            border: 1px solid var(--border);
+            margin-bottom: 15px;
         }
-        .news-ticker {
-            width: 100%;
-            max-width: 1200px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .news-ticker h3 {
-            color: var(--accent);
-            margin-bottom: 12px;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .news-list {
-            list-style-type: none;
-        }
-        .news-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #1f2937;
-            color: #cbd5e1;
-            font-size: 0.9rem;
-        }
-        .news-list li:last-child {
-            border-bottom: none;
+        /* Live Auto Ticker Bar */
+        .ticker-bar {
+            background: #111;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            border-top: 2px solid var(--bbc-red);
+            margin-top: 30px;
         }
         footer {
-            margin-top: auto;
-            color: #6b7280;
-            font-size: 0.85rem;
+            background: #000;
+            color: #aaa;
             text-align: center;
             padding: 20px;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>DevForgeHub Defense Matrix</h1>
-        <p>Global Fighter Jets Engineering, Advanced Materials & Live Intelligence Hub</p>
+        <div class="top-bar">
+            <div class="logo-area">DEVFORGE NEWS</div>
+            <div class="live-status">
+                <div class="live-dot"></div> LIVE DEFENSE INTEL
+            </div>
+        </div>
+        <div class="sub-nav">
+            GLOBAL MILITARY & AEROSPACE INTELLIGENCE DESK
+        </div>
     </header>
 
     <div class="container">
-        <!-- Su-57 -->
-        <div class="jet-card" onclick="loadJetData('Sukhoi Su-57 Felon', 'Russia', '5th Generation', 'Twin-Engine Turbofan (AL-41F1 / izdeliye 30)', 'Mach 2.0 (2,440 km/h)', 'Advanced Radar-Absorbent Composite Materials, Titanium-Lithium Alloys, Carbon Fiber Structures.', 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80', 'The Su-57 is Russia’s premier stealth fighter designed for multirole air superiority. It uses advanced thrust-vectoring engines and internal weapon bays to evade enemy radar while maintaining supreme dogfighting kinematics.')">
-            <div class="jet-img-box">
-                <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80" alt="Su-57">
-                <div class="flag-badge">🇷🇺 Russia</div>
-            </div>
-            <div class="jet-content">
-                <h3>Sukhoi Su-57 Felon</h3>
-                <span class="gen">Generation: 5th</span>
-                <p>Heavy stealth air-superiority fighter with 3D thrust-vectoring agility.</p>
-            </div>
-        </div>
+        <div class="section-title">FEATURED: GLOBAL FIGHTER JETS & MILITARY ARSENAL MATRIX</div>
 
-        <!-- F-22 & F-35 -->
-        <div class="jet-card" onclick="loadJetData('Lockheed Martin F-22 Raptor', 'USA', '5th Generation', 'Twin Pratt & Whitney F119-PW-100 Turbofans', 'Mach 2.25 (2,414 km/h)', 'RAM (Radar-Absorbent Material) coatings, Bismaleimide composites, High-strength titanium alloys.', 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80', 'The F-22 Raptor is widely regarded as the pinnacle of air dominance fighters, featuring unmatched stealth profiles, supercruise capability, and advanced APG-77 AESA radar systems.')">
-            <div class="jet-img-box">
-                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80" alt="F-22">
-                <div class="flag-badge">🇺🇸 USA</div>
-            </div>
-            <div class="jet-content">
-                <h3>Lockheed Martin F-22 Raptor</h3>
-                <span class="gen">Generation: 5th</span>
-                <p>The global benchmark for stealth air supremacy and supercruise power.</p>
-            </div>
-        </div>
-
-        <!-- J-20 -->
-        <div class="jet-card" onclick="loadJetData('Chengdu J-20 Mighty Dragon', 'China', '5th Generation', 'Twin WS-10C / WS-15 Turbofans', 'Mach 2.0 (2,470 km/h)', 'Advanced stealth composite skins, carbon-nanotube reinforced frames, lightweight lithium-aluminum.', 'https://images.unsplash.com/photo-1517976487812-592f640d8d2ef?auto=format&fit=crop&w=800&q=80', 'China’s heavy stealth fighter optimized for long-range interdiction missions, carrying large internal payload capacities and advanced electro-optical targeting systems.')">
-            <div class="jet-img-box">
-                <img src="https://images.unsplash.com/photo-1517976487812-592f640d8d2ef?auto=format&fit=crop&w=800&q=80" alt="J-20">
-                <div class="flag-badge">🇨🇳 China</div>
-            </div>
-            <div class="jet-content">
-                <h3>Chengdu J-20 Mighty Dragon</h3>
-                <span class="gen">Generation: 5th</span>
-                <p>Long-range heavy stealth fighter designed for strategic strike dominance.</p>
-            </div>
-        </div>
-
-        <!-- Rafale -->
-        <div class="jet-card" onclick="loadJetData('Dassault Rafale', 'France', '4.5 Generation', 'Twin Snecma M88-2 Turbofans', 'Mach 1.8 (1,912 km/h)', 'Carbon composites (70% of airframe), titanium structural members, RAM embedded skin.', '
+        <!-- News Grid with Multiple Nations -->
+        <div class="news-grid" id="countryGrid">
             
+            <!-- Russia -->
+            <div class="news-card" onclick="openReport('Russia', 'Sukhoi Su-57 & Su-35 Fleet', 'Estimated Active Fleet: ~400+ Multirole & Stealth Jets', 'Titanium alloys, Carbon-fiber composites, Radar-Absorbent Material (RAM)', 'Mach 2.0 to Mach 2.25', 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80', 'Russia maintains one of the largest air power networks globally, headlined by the 5th-gen Su-57 Felon and workhorse Su-35 Flanker-E. Their manufacturing relies heavily on heavy-duty titanium structures, thrust-vectoring AL-41F1 engines, and long-range R-37M missiles designed to counter NATO airborne assets.')">
+                <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80" class="news-img" alt="Russia">
+                <div class="news-content">
+                    <div>
+                        <div class="meta-tag">🇷🇺 Russia Defence</div>
+                        <h3>Russia Expands 5th-Gen Fleet & Heavy Interceptors</h3>
+                        <p>Total estimated fighter fleet exceeds 400 units, focusing on super-maneuverability and long-range missile strikes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- USA -->
+            <div class="news-card" onclick="openReport('United States', 'F-22 Raptor & F-35 Lightning II', 'Estimated Active Fleet: 2,700+ Advanced Combat Aircraft', 'Advanced Bismaleimide composites, Radar-Absorbent skins, RAM coatings', 'Mach 2.25', 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80', 'The United States operates the worlds most technologically dominant air force. Backed by Lockheed Martin, the F-22 and F-35 integrate total sensor fusion, low-observable stealth geometry, and networked tactical data links across global theaters.')">
+                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80" class="news-img" alt="USA">
+                <div class="news-content">
+                    <div>
+                        <div class="meta-tag">🇺🇸 United States Air Force</div>
+                        <h3>US Dominates Global Stealth & Sensor Fusion Matrix</h3>
+                        <p>Massive multi-role inventory featuring unmatched low-observable radar cross-section technology.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- China -->
+            <div class="news-card" onclick="openReport('China', 'Chengdu J-20 & J-16 Strike Fleet', 'Estimated Active Fleet: 1,800+ Modern Combat Jets', 'Carbon-nanotube reinforced structures, lightweight lithium-aluminum alloys', 'Mach 2.0', 'https://images.unsplash.com/photo-1517976487812-592f640d8d2ef?auto=format&fit=crop&w=800&q=80', 'China has rapidly scaled domestic aerospace manufacturing. The J-20 Mighty Dragon provides strategic long-range interdiction, while domestic WS-15 engines push production independence forward.')">
+                <img src="https://images.unsplash.com/photo-1517976487812-592f640d8d2ef?auto=format&fit=crop&w=800&q=80" class="news-img" alt="China">
+                <div class="news-content">
+                    <div>
+                        <div class="meta-tag">🇨🇳 China Aviation Industry</div>
+                        <h3>China Accelerates Domestic Engine & J-20 Production</h3>
+                        <p>Expanding heavy stealth capabilities with advanced domestic manufacturing plants.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- North Korea -->
+            <div class="news-card" onclick="openReport('North Korea', 'MiG-29 & Legacy Soviet Interceptors', 'Estimated Active Fleet: ~400-500 Aircraft (Older Generation)', 'Soviet-grade aluminum alloys, basic steel frames', 'Mach 2.3 (MiG-29)', 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80', 'North Korea relies heavily on fortified underground airbases and a legacy fleet of Soviet-era MiG-29s, MiG-23s, and modified Chinese airframes to protect its airspace through numerical defense and hardened bunkers.')">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80" class="news-img" alt="North Korea">
+                <div class="news-content">
+                    <div>
+                        <div class="meta-tag">🇰🇵 North Korea Defense</div>
+                        <h3>Inside North Korea's Underground Airbase Network</h3>
+                        <p>Maintaining legacy Soviet-era MiG interceptors supported by hardened subterranean hangars.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- South Korea -->
+            <div class="news-card" onclick="openReport('South Korea', 'KAI KF-21 Boramae & F-35A', 'Estimated Active Fleet: 400+ Advanced Jets', 'Advanced composite matrices, aluminum-lithium alloys', 'Mach 1.81', 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80', 'South Korea’s indigenous KF-21 Boramae supersonic fighter bridges the gap between 4.5 and 5th generation tech, featuring AESA radar and semi-internal weapon carriage.')">
+                <img src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80" class="news-img" alt="South Korea">
+                <div class="news-content">
+                    <div>
+                        <div class="meta-tag">🇰🇷 South Korea Aerospace</div>
+                        <h3>KF-21 Boramae Flight Tests Expand Rapidly</h3>
+                        <p>Seoul builds sovereign aerospace might with advanced semi-stealth supersonic platforms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Turkey -->
+            <div class="news-card" onclick="openReport('Turkey', 'TAI Kaan (TF-X) & F-16 Modernization', 'Estimated Active Fleet: 300+ Modern Combat Aircraft', 'Radar-absorbent carbon-composite matrices', 'Mach 1.8', 'https://images.unsplash.com/photo-1519074069444-1ba4ea16d66c?auto=format&fit=crop&w=800&q=80', 'Turkey’s indigenous 5th-generation stealth fighter project TAI Kaan represents Ankara’s push for total military-industrial independence, featuring internal weapons bays and advanced glass cockpits.')">
+                <img src="https://images.unsplash.com/photo-1519074069444-1ba4ea16d66c?auto=format&fit=crop&w=800&q=80" class="news-img" alt="Turkey">
+                <div class="news-content">
+                    <div>
+                        <div class="meta-tag">🇹🇷 Turkey Defense Sector</div>
+                        <h3>TAI Kaan 5th-Gen Stealth Fighter Progress</h3>
+                        <p>Ankara consolidates indigenous aerospace engineering with advanced domestic stealth test-flights.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Japan -->
+            <div class="news-card" onclick="openReport('Japan', 'F-35 Lightning II & Global Combat Air Programme (GCAP)', 'Estimated Active Fleet: 300+ High-Tech Jets', 'Advanced radar-transparent and stealth composites', 'Mach 2.0', 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80', 'Japan maintains an elite technologically superior air defense force, combining domestic F-35 operations with collaborative next-gen 6th generation GCAP fighter developments with UK and Italy.')">
+                <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80" class="news-img" alt="Japan">
+                <div class="news-content">
+                    <div>
+                        <div class="meta-tag">🇯🇵 Japan Self-Defense Forces</div>
+                        <h3>Japan Strengthens Pacific Air Shield with GCAP</h3>
+                        <p>Tokyo partners in next-generation stealth architecture while expanding active F-35 squadrons.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- France -->
+            <div class="news-card" onclick="openReport('France', 'Dassault Rafale Omnirole Fleet', 'Estimated Active Fleet: 200+ Combat Jets', '70% Carbon composites, titanium structural frames', 'Mach 1.8', 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80', 'France relies on the combat-proven Dassault Rafale, featuring the SPECTRA electronic warfare suite, delta-canard aerodynamics, and carrier-launch capability.')">
+                <img src="
+    
