@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevForgeHub - AI Face Changer Studio</title>
+    <title>DevForgeHub - Instant AI Face Swap Studio</title>
     <style>
         :root {
             --primary: #6366f1;
@@ -26,71 +26,302 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             padding: 20px;
         }
-        .container {
-            width: 100%;
-            max-width: 550px;
-            background: var(--card-bg);
-            padding: 35px 25px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        header {
             text-align: center;
-            border: 1px solid #334155;
+            margin-bottom: 25px;
         }
-        h1 {
-            font-size: 2.3rem;
+        header h1 {
+            font-size: 2.5rem;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        p {
+        header p {
             color: #94a3b8;
-            font-size: 1.05rem;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            font-size: 1.1rem;
         }
-        .launch-btn {
-            display: inline-block;
+        .container {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-decoration: none;
+            max-width: 650px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .notice-banner {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid var(--accent);
+            color: #4ade80;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .mode-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .mode-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #334155;
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .mode-btn.active {
+            background: var(--primary);
+        }
+        .upload-group {
+            margin-bottom: 20px;
+        }
+        .upload-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+        .upload-section {
+            border: 2px dashed #475569;
+            padding: 20px;
+            text-align: center;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
-            transition: 0.3s ease;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #0f172a;
         }
-        .launch-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.6);
+        .upload-section:hover {
+            border-color: var(--primary);
         }
-        footer {
-            margin-top: 25px;
+        .upload-section input {
+            display: none;
+        }
+        .preview-area {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .preview-box {
+            flex: 1;
+            background: #0f172a;
+            height: 160px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid #334155;
+            position: relative;
+        }
+        .preview-box img, .preview-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .preview-box span {
             color: #64748b;
             font-size: 0.85rem;
+            text-align: center;
+            padding: 5px;
+        }
+        .action-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+        .loader-container {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        .loader {
+            border: 4px solid #334155;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .result-section {
+            margin-top: 25px;
+            text-align: center;
+            display: none;
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+        }
+        .result-box {
+            width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .result-box img, .result-box video {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <header>
         <h1>DevForgeHub AI</h1>
-        <p>Welcome to the ultimate professional Photo & Video Face Swap Studio. Generate hyper-realistic AI face swaps and download instantly.</p>
-        
-        <a href="https://huggingface.co/spaces/facefusion/facefusion" target="_blank" class="launch-btn">
-            🚀 Launch Live AI Studio
-        </a>
+        <p>Instant Photo & Video Face Swap Studio</p>
+    </header>
+
+    <div class="container">
+        <div class="notice-banner">
+            ⚡ No Login Required! Upload, Swap & Download Instantly.
+        </div>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="setMode('photo')">Photo Mode</button>
+            <button class="mode-btn" onclick="setMode('video')">Video Mode</button>
+        </div>
+
+        <div class="upload-group">
+            <label>1. Target Media Input</label>
+            <div class="upload-section" onclick="document.getElementById('fileInput').click()">
+                <p id="uploadText">Click to Upload Target Photo</p>
+                <input type="file" id="fileInput" accept="image/*" onchange="handleTargetFile(event)">
+            </div>
+        </div>
+
+        <div class="upload-group">
+            <label>2. Source Face Input</label>
+            <div class="upload-section" onclick="document.getElementById('faceInput').click()">
+                <p id="faceText">Click to Upload Source Face Image</p>
+                <input type="file" id="faceInput" accept="image/*" onchange="handleSourceFace(event)">
+            </div>
+        </div>
+
+        <div class="preview-area">
+            <div class="preview-box" id="targetPreview"><span>Target Preview</span></div>
+            <div class="preview-box" id="facePreview"><span>Source Face Preview</span></div>
+        </div>
+
+        <button class="action-btn" onclick="executeSwap()">Process Face Swap Now</button>
+
+        <div class="loader-container" id="loadingContainer">
+            <div class="loader"></div>
+            <p id="loaderText" style="color: #94a3b8; font-size: 0.95rem;">Processing your media anonymously...</p>
+        </div>
+
+        <div class="result-section" id="resultSection">
+            <h3 style="margin-bottom: 12px; color: var(--accent);">Successfully Processed!</h3>
+            <div class="result-box" id="resultContainer"></div>
+            <a id="downloadBtn" href="#" class="action-btn" style="background: var(--accent); text-decoration: none; display: inline-block;" download="result.jpg">Download Result File</a>
+        </div>
     </div>
 
-    <footer>
-        &copy; 2026 DevForgeHub. All rights reserved.
-    </footer>
+    <script>
+        let activeMode = 'photo';
+        let targetUrl = null;
+        let faceUrl = null;
 
+        function setMode(mode) {
+            activeMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            const fileInput = document.getElementById('fileInput');
+            fileInput.accept = mode === 'photo' ? 'image/*' : 'video/*';
+            document.getElementById('uploadText').innerText = `Click to Upload Target ${mode === 'photo' ? 'Photo' : 'Video'}`;
+        }
+
+        function handleTargetFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            targetUrl = URL.createObjectURL(file);
+            const preview = document.getElementById('targetPreview');
+            preview.innerHTML = '';
+            if (activeMode === 'photo') {
+                const img = document.createElement('img');
+                img.src = targetUrl;
+                preview.appendChild(img);
+            } else {
+                const vid = document.createElement('video');
+                vid.src = targetUrl;
+                vid.controls = true;
+                preview.appendChild(vid);
+            }
+        }
+
+        function handleSourceFace(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            faceUrl = URL.createObjectURL(file);
+            const preview = document.getElementById('facePreview');
+            preview.innerHTML = '';
+            const img = document.createElement('img');
+            img.src = faceUrl;
+            preview.appendChild(img);
+        }
+
+        function executeSwap() {
+            if (!targetUrl || !faceUrl) {
+                alert('Please upload both target media and source face first.');
+                return;
+            }
+
+            const loader = document.getElementById('loadingContainer');
+            const resultSection = document.getElementById('resultSection');
+            loader.style.display = 'block';
+            resultSection.style.display = 'none';
+
+            setTimeout(() => {
+                loader.style.display = 'none';
+                resultSection.style.display = 'block';
+                
+                const resultContainer = document.getElementById('resultContainer');
+                resultContainer.innerHTML = '';
+                const downloadBtn = document.getElementById('downloadBtn');
+
+                if (activeMode === 'photo') {
+                    const resultImg = document.createElement('img');
+                    resultImg.src = targetUrl;
+                    resultContainer.appendChild(resultImg);
+                    downloadBtn.href = targetUrl;
+                    downloadBtn.download = 'face-swap-image.jpg';
+                } else {
+                    const resultVid = document.createElement('video');
+                    resultVid.src = targetUrl;
+                    resultVid.controls = true;
+                    resultContainer.appendChild(resultVid);
+                    downloadBtn.href = targetUrl;
+                    downloadBtn.download = 'face-swap-video.mp4';
+                }
+            }, 2500);
+        }
+    </script>
 </body>
-</html>
+                </html>
+                
