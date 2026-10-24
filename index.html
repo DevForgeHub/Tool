@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevForgeHub - Global Fighter Jets Intelligence Database</title>
+    <title>DevForgeHub - Advanced Global Fighter Jets & Technology Matrix</title>
     <style>
         :root {
-            --primary: #3b82f6;
-            --secondary: #1d4ed8;
-            --bg: #090d16;
+            --primary: #0ea5e9;
+            --secondary: #2563eb;
+            --bg: #030712;
             --card-bg: #111827;
             --text: #f3f4f6;
             --accent: #10b981;
@@ -18,7 +18,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', Courier, monospace, 'Segoe UI', Tahoma;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
             background-color: var(--bg);
@@ -31,191 +31,226 @@
         }
         header {
             text-align: center;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 20px;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1200px;
         }
         header h1 {
-            font-size: 2.3rem;
-            color: #60a5fa;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            font-size: 2.8rem;
+            background: linear-gradient(to right, #38bdf8, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: 1px;
             margin-bottom: 5px;
         }
         header p {
             color: #9ca3af;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
+            font-size: 1.05rem;
         }
         .container {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1200px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
         }
         .jet-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
         }
         .jet-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.15);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(14, 165, 233, 0.2);
         }
-        .jet-card h3 {
+        .jet-img-box {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .jet-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .jet-card:hover .jet-img-box img {
+            transform: scale(1.05);
+        }
+        .flag-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .jet-content {
+            padding: 20px;
+        }
+        .jet-content h3 {
             color: #f9fafb;
             margin-bottom: 6px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
-        .jet-card .gen {
+        .gen {
             display: inline-block;
-            background: #1f2937;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin-bottom: 10px;
+            background: #1e293b;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
             color: var(--accent);
             font-weight: bold;
-            text-transform: uppercase;
         }
-        .jet-card p {
+        .jet-content p {
             color: #9ca3af;
-            font-size: 0.9rem;
-            line-height: 1.4;
+            font-size: 0.92rem;
+            line-height: 1.5;
         }
         .details-section {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1200px;
             background: var(--card-bg);
-            border: 1px solid var(--accent);
-            border-radius: 8px;
-            padding: 25px;
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 30px;
             display: none;
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.1);
+            margin-bottom: 35px;
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.15);
         }
-        .details-section h2 {
-            color: var(--accent);
-            margin-bottom: 12px;
-            font-size: 1.5rem;
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
         }
-        .details-section p {
+        @media (max-width: 768px) {
+            .details-grid { grid-template-columns: 1fr; }
+        }
+        .details-info h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        .details-info p {
             color: #d1d5db;
             line-height: 1.6;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .spec-tag {
+            background: #1e293b;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 8px;
+            border-left: 4px solid var(--accent);
+            font-size: 0.9rem;
+        }
+        .details-img img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .news-ticker {
+            width: 100%;
+            max-width: 1200px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .news-ticker h3 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .news-list {
+            list-style-type: none;
+        }
+        .news-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #1f2937;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        .news-list li:last-child {
+            border-bottom: none;
         }
         footer {
             margin-top: auto;
-            color: #4b5563;
-            font-size: 0.8rem;
+            color: #6b7280;
+            font-size: 0.85rem;
             text-align: center;
-            padding: 15px;
-            letter-spacing: 1px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>DevForgeHub Defense Intelligence</h1>
-        <p>[ GLOBAL MILITARY AIRCRAFT & GENERATION SPECIFICATION MATRIX ]</p>
+        <h1>DevForgeHub Defense Matrix</h1>
+        <p>Global Fighter Jets Engineering, Advanced Materials & Live Intelligence Hub</p>
     </header>
 
     <div class="container">
-        <!-- Russia -->
-        <div class="jet-card" onclick="loadSpec('Sukhoi Su-57 Felon', 'Russia', '5th Generation', 'The Su-57 is Russia’s premier twin-engine stealth multirole fighter. It features 3D thrust-vectoring engines, internal weapon bays, and advanced AESA radar designed to counter Western air superiority platforms.')">
-            <h3>Russia: Sukhoi Su-57 Felon</h3>
-            <span class="gen">Generation: 5th</span>
-            <p>Advanced stealth heavy fighter optimized for air superiority and long-range precision strikes.</p>
+        <!-- Su-57 -->
+        <div class="jet-card" onclick="loadJetData('Sukhoi Su-57 Felon', 'Russia', '5th Generation', 'Twin-Engine Turbofan (AL-41F1 / izdeliye 30)', 'Mach 2.0 (2,440 km/h)', 'Advanced Radar-Absorbent Composite Materials, Titanium-Lithium Alloys, Carbon Fiber Structures.', 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80', 'The Su-57 is Russia’s premier stealth fighter designed for multirole air superiority. It uses advanced thrust-vectoring engines and internal weapon bays to evade enemy radar while maintaining supreme dogfighting kinematics.')">
+            <div class="jet-img-box">
+                <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80" alt="Su-57">
+                <div class="flag-badge">🇷🇺 Russia</div>
+            </div>
+            <div class="jet-content">
+                <h3>Sukhoi Su-57 Felon</h3>
+                <span class="gen">Generation: 5th</span>
+                <p>Heavy stealth air-superiority fighter with 3D thrust-vectoring agility.</p>
+            </div>
         </div>
 
-        <div class="jet-card" onclick="loadSpec('Sukhoi Su-35 Flanker-E', 'Russia', '4.5 Generation', 'An exceptional heavyweight 4.5 generation supermaneuverable fighter. Equipped with Irbis-E passive phased array radar, it relies on extreme kinematic performance and electronic warfare instead of full radar cross-section stealth.')">
-            <h3>Russia: Sukhoi Su-35 Flanker-E</h3>
-            <span class="gen">Generation: 4.5</span>
-            <p>Supermaneuverable powerhouse with thrust vectoring and heavy payload capacities.</p>
+        <!-- F-22 & F-35 -->
+        <div class="jet-card" onclick="loadJetData('Lockheed Martin F-22 Raptor', 'USA', '5th Generation', 'Twin Pratt & Whitney F119-PW-100 Turbofans', 'Mach 2.25 (2,414 km/h)', 'RAM (Radar-Absorbent Material) coatings, Bismaleimide composites, High-strength titanium alloys.', 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80', 'The F-22 Raptor is widely regarded as the pinnacle of air dominance fighters, featuring unmatched stealth profiles, supercruise capability, and advanced APG-77 AESA radar systems.')">
+            <div class="jet-img-box">
+                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80" alt="F-22">
+                <div class="flag-badge">🇺🇸 USA</div>
+            </div>
+            <div class="jet-content">
+                <h3>Lockheed Martin F-22 Raptor</h3>
+                <span class="gen">Generation: 5th</span>
+                <p>The global benchmark for stealth air supremacy and supercruise power.</p>
+            </div>
         </div>
 
-        <!-- USA -->
-        <div class="jet-card" onclick="loadSpec('Lockheed Martin F-22 Raptor & F-35 Lightning II', 'USA', '5th Generation', 'The United States operates the world benchmark in 5th-gen combat aviation. The F-22 dominates air superiority with unmatched stealth and kinematics, while the F-35 serves as a globally networked multirole sensor hub.')">
-            <h3>USA: Lockheed Martin F-22 & F-35</h3>
-            <span class="gen">Generation: 5th</span>
-            <p>The gold standard of low-observable stealth technology and sensor fusion.</p>
+        <!-- J-20 -->
+        <div class="jet-card" onclick="loadJetData('Chengdu J-20 Mighty Dragon', 'China', '5th Generation', 'Twin WS-10C / WS-15 Turbofans', 'Mach 2.0 (2,470 km/h)', 'Advanced stealth composite skins, carbon-nanotube reinforced frames, lightweight lithium-aluminum.', 'https://images.unsplash.com/photo-1517976487812-592f640d8d2ef?auto=format&fit=crop&w=800&q=80', 'China’s heavy stealth fighter optimized for long-range interdiction missions, carrying large internal payload capacities and advanced electro-optical targeting systems.')">
+            <div class="jet-img-box">
+                <img src="https://images.unsplash.com/photo-1517976487812-592f640d8d2ef?auto=format&fit=crop&w=800&q=80" alt="J-20">
+                <div class="flag-badge">🇨🇳 China</div>
+            </div>
+            <div class="jet-content">
+                <h3>Chengdu J-20 Mighty Dragon</h3>
+                <span class="gen">Generation: 5th</span>
+                <p>Long-range heavy stealth fighter designed for strategic strike dominance.</p>
+            </div>
         </div>
 
-        <!-- China -->
-        <div class="jet-card" onclick="loadSpec('Chengdu J-20 Mighty Dragon & 6th-Gen Dev', 'China', '5th & 6th Generation Programs', 'China’s J-20 is a large stealth air-superiority fighter designed to target enemy AWACS and tankers. Meanwhile, China is actively flight-testing next-gen concepts featuring tailless designs and AI loyal wingman integration.')">
-            <h3>China: Chengdu J-20 & Next-Gen</h3>
-            <span class="gen">Generation: 5th & 6th (Dev)</span>
-            <p>Long-range stealth air dominance asset alongside advanced next-gen drone integration programs.</p>
-        </div>
-
-        <!-- France -->
-        <div class="jet-card" onclick="loadSpec('Dassault Rafale', 'France', '4.5 Generation', 'A legendary multirole delta-canard fighter known for extreme operational versatility. Built by France, it features SPECTRA electronic warfare suite and compatibility with Meteor beyond-visual-range missiles.')">
-            <h3>France: Dassault Rafale</h3>
-            <span class="gen">Generation: 4.5</span>
-            <p>Omnirole twin-engine fighter engineered for carrier operations and precision strike efficiency.</p>
-        </div>
-
-        <!-- Turkey -->
-        <div class="jet-card" onclick="loadSpec('TAI Kaan (TF-X)', 'Turkey', '5th Generation', 'Turkey’s indigenous 5th-generation stealth fighter jet project. Developed by Turkish Aerospace Industries, it is engineered to replace older F-16 fleets with advanced internal weapon bays and high-end avionics.')">
-            <h3>Turkey: TAI Kaan</h3>
-            <span class="gen">Generation: 5th (Advanced)</span>
-            <p>Turkey's indigenous stealth fighter program designed for sovereign air supremacy.</p>
-        </div>
-
-        <!-- Italy -->
-        <div class="jet-card" onclick="loadSpec('Eurofighter Typhoon & F-35 Assembly', 'Italy', '4.5 & 5th Generation', 'Italy contributes significantly to European defense, operating the agile Eurofighter Typhoon (4.5 Gen) and hosting domestic final assembly and check-out (FACO) facilities for the 5th-gen F-35 fleet.')">
-            <h3>Italy: Eurofighter & F-35 Integration</h3>
-            <span class="gen">Generation: 4.5 / 5th</span>
-            <p>European multirole defender combined with local assembly lines for cutting-edge stealth.</p>
-        </div>
-
-        <!-- South Korea -->
-        <div class="jet-card" onclick="loadSpec('KAI KF-21 Boramae', 'South Korea', '4.5+ Generation (Evolutionary 5th)', 'South Korea’s advanced fighter jet developed to bridge the gap between 4.5 gen and full stealth. It features semi-internal weapon bays, AESA radar, and an upgrade path toward full 5th-generation capabilities.')">
-            <h3>South Korea: KAI KF-21 Boramae</h3>
-            <span class="gen">Generation: 4.5+ (Upgradeable)</span>
-            <p>Modern supersonic fighter designed for high operational agility and future stealth upgrades.</p>
-        </div>
-
-        <!-- North Korea -->
-        <div class="jet-card" onclick="loadSpec('North Korea Air Force (MiG-29 / Legacy Fleet)', 'North Korea', '3rd to 4th Generation', 'North Korea operates a legacy fleet consisting primarily of Soviet-era aircraft, including MiG-29s, MiG-23s, and older Chengdu J-7s, relying heavily on hardened underground bunkers and numerical defense.')">
-            <h3>North Korea: Legacy Fleet (MiG-29)</h3>
-            <span class="gen">Generation: 3rd / 4th</span>
-            <p>Soviet-era interceptors and tactical strike units forming the backbone of DPRK airspace defense.</p>
-        </div>
-    </div>
-
-    <div class="details-section" id="detailsBox">
-        <h2 id="detTitle">-- SELECT A MILITARY AIRCRAFT SYSTEM --</h2>
-        <p id="detCountry"><b>Country of Origin:</b> [ Select card above ]</p>
-        <p id="detGen"><b>Generation Class:</b> -</p>
-        <p id="detDesc"><b>Manufacturing & Tactical Profile:</b> Click any weapon system card to access complete aerospace architecture data.</p>
-    </div>
-
-    <footer>
-        &copy; 2026 DevForgeHub Defense Intelligence Systems. Secure Channel Active.
-    </footer>
-
-    <script>
-        function loadSpec(name, country, gen, desc) {
-            const box = document.getElementById('detailsBox');
-            box.style.display = 'block';
-            document.getElementById('detTitle').innerText = name;
-            document.getElementById('detCountry').innerHTML = `<b>Country of Origin:</b> ${country}`;
-            document.getElementById('detGen').innerHTML = `<b>Generation Class:</b> ${gen}`;
-            document.getElementById('detDesc').innerHTML = `<b>Manufacturing & Tactical Profile:</b> ${desc}`;
-            box.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
-</body>
-    </html>
-                                                                                                   
+        <!-- Rafale -->
+        <div class="jet-card" onclick="loadJetData('Dassault Rafale', 'France', '4.5 Generation', 'Twin Snecma M88-2 Turbofans', 'Mach 1.8 (1,912 km/h)', 'Carbon composites (70% of airframe), titanium structural members, RAM embedded skin.', '
+            
