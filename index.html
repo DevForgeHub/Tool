@@ -21,7 +21,6 @@
             background-color: #fff;
             color: #222;
         }
-        /* Channel Header */
         .channel-header {
             background-color: var(--news-dark);
             color: #fff;
@@ -61,14 +60,7 @@
             height: 10px;
             background-color: #ff3b30;
             border-radius: 50%;
-            animation: pulseGlow 1.2s infinite;
         }
-        @keyframes pulseGlow {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(1.3); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        /* Breaking News Ticker Bar (24/7 Continuous) */
         .breaking-ticker {
             background-color: var(--news-red);
             color: #fff;
@@ -88,15 +80,6 @@
             font-size: 0.85rem;
             letter-spacing: 1px;
         }
-        .ticker-content {
-            display: inline-block;
-            animation: tickerScroll 25s linear infinite;
-        }
-        @keyframes tickerScroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        /* Navigation Categories */
         .sub-nav {
             background: #222;
             color: #fff;
@@ -109,12 +92,10 @@
         }
         .sub-nav span {
             cursor: pointer;
-            transition: 0.2s;
         }
         .sub-nav span:hover {
             color: var(--news-red);
         }
-        /* Main Layout Grid */
         .container {
             max-width: 1280px;
             margin: 30px auto;
@@ -134,7 +115,6 @@
             font-weight: 800;
             text-transform: uppercase;
         }
-        /* News Feed Section */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -189,7 +169,6 @@
             color: #555;
             line-height: 1.4;
         }
-        /* Interactive Community Groups Sidebar */
         .sidebar-box {
             background: var(--news-gray);
             border: 1px solid var(--border-color);
@@ -221,5 +200,228 @@
             background: var(--news-red);
             color: #fff;
             border: none;
-            padding: 
-        
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .group-form button:hover {
+            background: #a30000;
+        }
+        .created-groups-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .group-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 4px;
+        }
+        .group-card h4 {
+            color: var(--news-red);
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        .group-card p {
+            font-size: 0.88rem;
+            color: #444;
+            margin-bottom: 8px;
+        }
+        .group-comments {
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px dashed #eee;
+            padding-top: 6px;
+            margin-top: 6px;
+        }
+        .article-view {
+            background: var(--news-gray);
+            border: 2px solid var(--news-dark);
+            padding: 30px;
+            margin-top: 30px;
+            display: none;
+            grid-column: span 2;
+        }
+        .article-view h2 {
+            color: var(--news-red);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .article-meta {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .article-hero-img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .article-text p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #222;
+            margin-bottom: 15px;
+        }
+        footer {
+            background: var(--news-dark);
+            color: #aaa;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.85rem;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="channel-header">
+        <div class="channel-logo">GLOBAL NEWS 24</div>
+        <div class="header-right">
+            <div class="live-badge">
+                <div class="live-dot"></div> 24/7 LIVE BROADCAST
+            </div>
+        </div>
+    </header>
+
+    <div class="sub-nav">
+        <span>TOP STORIES</span>
+        <span>GLOBAL DEFENSE</span>
+        <span>EUROPEAN NEWS</span>
+        <span>MIDDLE EAST DESK</span>
+        <span>AVIATION & TECH</span>
+    </div>
+
+    <div class="breaking-ticker">
+        <div class="breaking-tag">BREAKING INTEL</div>
+        <div id="tickerText" style="display:inline-block;">[LIVE WIRE] Global defense ministries report continuous telemetry updates across strategic fighter jet command hubs.</div>
+    </div>
+
+    <div class="container">
+        <div>
+            <div class="section-title">Trending Broadcasts & Reports</div>
+            
+            <div class="news-grid">
+                <div class="news-card" onclick="openArticle('Next-Gen 6th Generation Fighter Jets Development Accelerates Worldwide', 'TECH', 'Global Defense Desk', 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=900&q=80', 'Major military powers are rapidly investing in 6th-generation fighter programs featuring artificial intelligence wingmen, directed-energy microwave weapons, and advanced stealth adaptive skins.')">
+                    <div class="card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=900&q=80" alt="Jet">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-category">Aviation & Tech</div>
+                            <h3>Next-Gen 6th Generation Fighter Jets Development Accelerates Worldwide</h3>
+                            <p>Exploring artificial intelligence integration, laser defense systems, and advanced adaptive stealth airframes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card" onclick="openArticle('European Defense Alliances Expand Joint Air Patrol Operations', 'EUROPE', 'European News Desk', 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=900&q=80', 'European nations have finalized agreements to increase joint supersonic interceptor patrols along eastern airspace sectors, backed by synchronized radar telemetry.')">
+                    <div class="card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=900&q=80" alt="Europe">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-category">European News</div>
+                            <h3>European Defense Alliances Expand Joint Air Patrol Operations</h3>
+                            <p>Ankara, Paris, and allied capitals strengthen tactical air coordination and radar data links.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-view" id="articleViewBox">
+                <h2 id="artTitle">Select a news story above</h2>
+                <div class="article-meta" id="artMeta">Published by Global News 24 Desk</div>
+                <img id="artImg" src="" class="article-hero-img" alt="Hero">
+                <div class="article-text">
+                    <p id="artBody">Click any broadcast card above to read the complete 24/7 news report.</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="sidebar-box">
+                <h3>Community Groups & Chat</h3>
+                <p style="font-size: 0.85rem; color: #555; margin-bottom: 12px;">Create your own group instantly and share updates without any login required!</p>
+                
+                <div class="group-form">
+                    <input type="text" id="groupNameInput" placeholder="Enter Group Name">
+                    <textarea id="groupDescInput" placeholder="Write description or message..." rows="3"></textarea>
+                    <button onclick="createNewGroup()">+ Create Group / Post</button>
+                </div>
+
+                <h4 style="font-size: 0.95rem; margin-bottom: 10px; color: #333;">Active Community Groups:</h4>
+                <div class="created-groups-list" id="groupsListContainer">
+                    <div class="group-card">
+                        <h4>Global Fighter Jets Hub</h4>
+                        <p>Discussing 5th and 6th generation military aircraft specifications.</p>
+                        <div class="group-comments">💬 3 Active Discussions | Member: Anonymous</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Global News 24 & Defense Intelligence Network. All rights reserved.
+    </footer>
+
+    <script>
+        function openArticle(title, cat, desk, imgUrl, bodyText) {
+            const box = document.getElementById('articleViewBox');
+            box.style.display = 'block';
+            document.getElementById('artTitle').innerText = title;
+            document.getElementById('artMeta').innerText = `Published by ${desk} | Category: ${cat} | Live Feed`;
+            document.getElementById('artImg').src = imgUrl;
+            document.getElementById('artBody').innerText = bodyText;
+            box.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function createNewGroup() {
+            const nameInput = document.getElementById('groupNameInput');
+            const descInput = document.getElementById('groupDescInput');
+            
+            if(!nameInput.value.trim() || !descInput.value.trim()) {
+                alert("Please enter both group name and description!");
+                return;
+            }
+
+            const container = document.getElementById('groupsListContainer');
+            const card = document.createElement('div');
+            card.className = 'group-card';
+            card.innerHTML = `
+                <h4>${nameInput.value}</h4>
+                <p>${descInput.value}</p>
+                <div class="group-comments">💬 Live Discussion | Member: Anonymous (Just Now)</div>
+            `;
+            
+            container.prepend(card);
+            nameInput.value = "";
+            descInput.value = "";
+        }
+
+        const tickerFlashes = [
+            "[LIVE WIRE] Global defense ministries report continuous telemetry updates.",
+            "[BREAKING] European air defense networks activate 24/7 monitoring schedules.",
+            "[MIDDLE EAST DESK] Strategic air command upgrades regional radar infrastructure."
+        ];
+
+        let tickerIdx = 0;
+        setInterval(() => {
+            tickerIdx = (tickerIdx + 1) % tickerFlashes.length;
+            const tickerEl = document.getElementById('tickerText');
+            if(tickerEl) {
+                tickerEl.innerText = tickerFlashes[tickerIdx];
+            }
+        }, 10000);
+    </script>
+</body>
+            </html>
+            
