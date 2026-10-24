@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevForgeHub - Real AI Face Swap Studio</title>
+    <title>DevForgeHub - Professional AI Face Swap Studio</title>
     <style>
         :root {
             --primary: #6366f1;
@@ -11,7 +11,6 @@
             --bg: #0f172a;
             --card-bg: #1e293b;
             --text: #f8fafc;
-            --accent: #22c55e;
         }
         * {
             margin: 0;
@@ -26,257 +25,71 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             padding: 20px;
         }
-        header {
+        .container {
+            width: 100%;
+            max-width: 550px;
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
             text-align: center;
-            margin-bottom: 25px;
+            border: 1px solid #334155;
         }
-        header h1 {
+        h1 {
             font-size: 2.5rem;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
-        header p {
+        p {
             color: #94a3b8;
             font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
-        .container {
+        .launch-btn {
+            display: inline-block;
             width: 100%;
-            max-width: 650px;
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-        .notice-banner {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid var(--accent);
-            color: #4ade80;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        .upload-group {
-            margin-bottom: 20px;
-        }
-        .upload-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #cbd5e1;
-        }
-        .upload-section {
-            border: 2px dashed #475569;
-            padding: 20px;
-            text-align: center;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-            background: #0f172a;
-        }
-        .upload-section:hover {
-            border-color: var(--primary);
-        }
-        .upload-section input {
-            display: none;
-        }
-        .preview-area {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .preview-box {
-            flex: 1;
-            background: #0f172a;
-            height: 160px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 1px solid #334155;
-            position: relative;
-        }
-        .preview-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .preview-box span {
-            color: #64748b;
-            font-size: 0.85rem;
-            text-align: center;
-            padding: 5px;
-        }
-        .action-btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
+            padding: 18px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
+            text-decoration: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            transition: 0.3s ease;
         }
-        .action-btn:hover {
+        .launch-btn:hover {
             opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.6);
         }
-        .loader-container {
-            text-align: center;
-            margin-top: 20px;
-            display: none;
-        }
-        .loader {
-            border: 4px solid #334155;
-            border-top: 4px solid var(--primary);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .result-section {
-            margin-top: 25px;
-            text-align: center;
-            display: none;
-            border-top: 1px solid #334155;
-            padding-top: 20px;
-        }
-        .result-box {
-            width: 100%;
-            max-height: 350px;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 15px;
-            background: #0f172a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .result-box img {
-            max-width: 100%;
-            max-height: 350px;
-            object-fit: contain;
+        footer {
+            margin-top: 30px;
+            color: #64748b;
+            font-size: 0.9rem;
         }
     </style>
-    <!-- Importing Gradio Client Library for Real AI Processing -->
-    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.16.0/gradio.js"></script>
 </head>
 <body>
 
-    <header>
-        <h1>DevForgeHub AI</h1>
-        <p>100% Working Real AI Face Swap Studio</p>
-    </header>
-
     <div class="container">
-        <div class="notice-banner">
-            ⚡ No Login Required! Direct AI Face Swapping Active.
-        </div>
-
-        <div class="upload-group">
-            <label>1. Target Photo (Jisme Face Change Karna Hai)</label>
-            <div class="upload-section" onclick="document.getElementById('targetInput').click()">
-                <p id="targetText">Click to Upload Target Photo</p>
-                <input type="file" id="targetInput" accept="image/*" onchange="handleTarget(event)">
-            </div>
-        </div>
-
-        <div class="upload-group">
-            <label>2. Source Face (Naya Chehra Jo Lagana Hai)</label>
-            <div class="upload-section" onclick="document.getElementById('sourceInput').click()">
-                <p id="sourceText">Click to Upload Source Face Image</p>
-                <input type="file" id="sourceInput" accept="image/*" onchange="handleSource(event)">
-            </div>
-        </div>
-
-        <div class="preview-area">
-            <div class="preview-box" id="targetPreview"><span>Target Preview</span></div>
-            <div class="preview-box" id="sourcePreview"><span>Source Preview</span></div>
-        </div>
-
-        <button class="action-btn" onclick="processRealFaceSwap()">Generate Real AI Face Swap</button>
-
-        <div class="loader-container" id="loadingContainer">
-            <div class="loader"></div>
-            <p id="loaderText" style="color: #94a3b8; font-size: 0.95rem;">Connected to AI Server, swapping faces...</p>
-        </div>
-
-        <div class="result-section" id="resultSection">
-            <h3 style="margin-bottom: 12px; color: var(--accent);">Face Swap Successful!</h3>
-            <div class="result-box" id="resultContainer"></div>
-            <a id="downloadBtn" href="#" class="action-btn" style="background: var(--accent); text-decoration: none; display: inline-block;" download="ai-swapped-face.jpg">Download Swapped Image</a>
-        </div>
+        <h1>DevForgeHub AI</h1>
+        <p>Welcome to the ultimate professional AI Face Swap Studio. Click below to launch the high-speed processing engine instantly without any errors.</p>
+        
+        <a href="https://huggingface.co/spaces/gokaygokay/InstantID" target="_blank" class="launch-btn">
+            Launch AI Studio Engine
+        </a>
     </div>
 
-    <script>
-        let targetFile = null;
-        let sourceFile = null;
+    <footer>
+        &copy; 2026 DevForgeHub. All rights reserved.
+    </footer>
 
-        function handleTarget(event) {
-            targetFile = event.target.files[0];
-            if (!targetFile) return;
-            const preview = document.getElementById('targetPreview');
-            preview.innerHTML = `<img src="${URL.createObjectURL(targetFile)}">`;
-            document.getElementById('targetText').innerText = targetFile.name;
-        }
-
-        function handleSource(event) {
-            sourceFile = event.target.files[0];
-            if (!sourceFile) return;
-            const preview = document.getElementById('sourcePreview');
-            preview.innerHTML = `<img src="${URL.createObjectURL(sourceFile)}">`;
-            document.getElementById('sourceText').innerText = sourceFile.name;
-        }
-
-        async function processRealFaceSwap() {
-            if (!targetFile || !sourceFile) {
-                alert('Please upload both target photo and source face image!');
-                return;
-            }
-
-            const loader = document.getElementById('loadingContainer');
-            const resultSection = document.getElementById('resultSection');
-            loader.style.display = 'block';
-            resultSection.style.display = 'none';
-
-            try {
-                // Connecting to a stable public AI Face Swap Space via Gradio Client
-                const client = await window.gradio.client("gokaygokay/InstantID");
-                const result = await client.predict("/predict", {
-                    input_image: targetFile,
-                    face_image: sourceFile,
-                    prompt: "high quality, professional face swap",
-                    scale: 5,
-                });
-
-                loader.style.display = 'none';
-                resultSection.style.display = 'block';
-
-                const outputImageUrl = result.data[0].url;
-                const resultContainer = document.getElementById('resultContainer');
-                resultContainer.innerHTML = `<img src="${outputImageUrl}">`;
-
-                const downloadBtn = document.getElementById('downloadBtn');
-                downloadBtn.href = outputImageUrl;
-            } catch (error) {
-                loader.style.display = 'none';
-                alert('AI processing error. Please try again with clear portrait images.');
-                console.error(error);
-            }
-        }
-    </script>
 </body>
 </html>
